@@ -6,10 +6,10 @@ from config import *
 #make target dir an option
 
 parser = argparse.ArgumentParser(description='Track your instagram posts.')
-parser.add_argument('post_id', nargs='?', default=0,
-        help='The id of the post you want to track')
-parser.add_argument('-i', action='store_true', dest='print_id',
-        help='Print the ids of recent posts.')
+parser.add_argument('-i', nargs='?', default=-1, dest='post_id',
+        help='The id of the post you want to track.')
+parser.add_argument('-t', dest='duration', nargs='?', defualt=48,
+        help='Track post for a given amount of time in hours.')
 
 api_url = "https://api.instagram.com/v1/"
 access_url = "/?access_token="+access_token
@@ -63,10 +63,7 @@ def collect_data(post_id, duration):
 if __name__ == "__main__":
     args = parser.parse_args()
 
-    if args.print_ids == True:
-        print_recent_post_ids()
-        exit()
-    else:
+    if args.post_id != -1:
         print("Collecting data...");
         JSONdata = collect_data(args.post_id).to_json()
         print("Collection finished! Exporting data...")
@@ -77,3 +74,8 @@ if __name__ == "__main__":
         with open(target_dir+"data.json", 'w') as f:
             f.append('var JSONdata =\n')
             json.dump(JSONdata, f)
+    else:
+        print_recent_post_ids()
+        exit()
+
+       
