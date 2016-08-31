@@ -7,12 +7,16 @@
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
-        var data = google.visualization.DataTable();
+        var data = new google.visualization.DataTable();
         data.addColumn('datetime', 'Time');
         data.addColumn('number', 'Likes');
 
-        for (int i = 0; i < JSONdata.length; i++)
-          data.addRow(JSONdata[i].values())
+        for (var i = 0; i < JSONdata.length; i++) {
+          var entry = JSONdata[i];
+          var d = new Date(0);
+          d.setUTCSeconds(entry['time']);
+          data.addRow([d, entry['likes']]);
+        }
 
         var options = {
           title: 'Time vs. Like Count',
