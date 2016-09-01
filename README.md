@@ -13,17 +13,17 @@ with the value being a string of your access token.
 4. Run instastats.
 
 ## Usage
-instastats.py [-h] [-i [POST_ID]] [-t [DURATION]] [-d [TARGET_DIR]]
+instastats.py [-h] [-i [POST_ID]] [-t [DURATION]] [-d [TARGET_DIR]] 
     [--display-info]
 
 Track your instagram posts.
 
 optional arguments:
-  -h, --help       show this help message and exit
-  -i [POST_ID]     The id of the post you want to track.
-  -t [DURATION]    Track post for a given amount of time in hours.
-  -d [TARGET_DIR]  Destination for data and html.
-  --display-info   Display information about the most recent posts.
+    -h, --help       show this help message and exit
+    -i [POST_ID]     The id of the post you want to track.
+    -t [DURATION]    Track post for a given amount of time in hours.
+    -d [TARGET_DIR]  Destination for data and html.
+    --display-info   Display information about the most recent posts.
 
 - Once the data is finished collecting, you run `python -m http.server` in your
 build directory with the data.
